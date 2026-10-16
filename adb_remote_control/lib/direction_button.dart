@@ -60,22 +60,20 @@ class _DirectionButtonState extends State<DirectionButton> {
       child: IconButton(
         iconSize: widget.size,
         icon: Icon(widget.icon),
-        // 2. IMPORTANTE: Dejamos onPressed vacío para el feedback visual,
-        // pero el Listener de arriba ya envió el comando ADB.
         onPressed: isEnabled ? () {} : null,
+        constraints: BoxConstraints.tightFor(
+          width: widget.size + 28,
+          height: widget.size + 28,
+        ),
         style: IconButton.styleFrom(
-          backgroundColor: isEnabled
-              ? (widget.color ?? Theme.of(context).colorScheme.primaryContainer)
-              : Colors.grey.shade300,
-          foregroundColor: isEnabled
-              ? Theme.of(context).colorScheme.onPrimaryContainer
-              : Colors.grey,
+          backgroundColor: isEnabled ? (widget.color ?? const Color(0xFF1D2942)) : const Color(0xFF171F32),
+          foregroundColor: isEnabled ? Colors.white : Colors.white30,
           shape: const CircleBorder(),
-          padding: EdgeInsets.all(widget.size * 0.2),
-          elevation: isEnabled ? 2 : 0,
+          padding: EdgeInsets.zero,
+          elevation: isEnabled ? 3 : 0,
+          shadowColor: Colors.black.withValues(alpha: 0.35),
         ),
       ),
     );
   }
 }
-
